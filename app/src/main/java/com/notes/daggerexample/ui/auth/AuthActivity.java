@@ -30,15 +30,11 @@ public class AuthActivity extends DaggerAppCompatActivity implements View.OnClic
 
     @Inject
     Drawable logo;
-
     @Inject
     ViewModelProviderFactory providerFactory;
-
     @Inject
     RequestManager requestManager;
-
     private AuthViewModel viewModel;
-
     private EditText userId;
     private ProgressBar progressBar;
 
@@ -57,10 +53,11 @@ public class AuthActivity extends DaggerAppCompatActivity implements View.OnClic
         setAuthLogo();
 
         subscribeObservers();
+
     }
 
     private void subscribeObservers() {
-        viewModel.observeUser().observe(this, new Observer<AuthResource<User>>() {
+        viewModel.observeAuthStae().observe(this, new Observer<AuthResource<User>>() {
             @Override
             public void onChanged(AuthResource<User> userAuthResource) {
                 if (userAuthResource != null) {
